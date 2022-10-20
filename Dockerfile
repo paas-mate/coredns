@@ -11,6 +11,6 @@ FROM shoothzj/base:go
 
 ENV COREDNS_HOME /opt/coredns
 
-COPY --from=compiler /opt/coredns/coredns /opt/coredns/coredns
+COPY --from=compiler /coredns/coredns /opt/coredns/coredns
 
 WORKDIR /opt/coredns
