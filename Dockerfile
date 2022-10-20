@@ -1,13 +1,16 @@
-FROM ttbb/base:goc AS compiler
+FROM shoothzj/compile:go AS compiler
 
-RUN git clone --depth 1 https://github.com/coredns/coredns && \
-cd coredns && \
+RUN git clone --depth 1 https://github.com/coredns/coredns
+
+COPY hack/Makefile /coredns/Makefile
+
+RUN cd coredns && \
 make
 
-FROM ttbb/base
+FROM shoothzj/base:go
 
-ENV COREDNS_HOME /opt/sh/coredns
+ENV COREDNS_HOME /opt/coredns
 
-COPY --from=compiler /opt/sh/coredns/coredns /opt/sh/coredns/coredns
+COPY --from=compiler /opt/coredns/coredns /opt/coredns/coredns
 
-WORKDIR /opt/sh/coredns
+WORKDIR /opt/coredns
