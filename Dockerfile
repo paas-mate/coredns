@@ -13,4 +13,6 @@ ENV COREDNS_HOME /opt/coredns
 
 COPY --from=compiler /coredns/coredns /opt/coredns/coredns
 
+RUN ln -s /opt/coredns/coredns /usr/bin/coredns
+
 WORKDIR /opt/coredns
